@@ -1,4 +1,6 @@
 TimeSheet::Application.routes.draw do
+  resources :works
+
   get "pages/home"
 
   get "pages/contact"  
