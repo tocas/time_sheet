@@ -2,7 +2,7 @@ class WorksController < ApplicationController
   
   before_filter :authenticate_user!
   before_filter :find_work, :only => [:show, :edit, :update, :destroy]
-  
+  before_filter :ext_work, :only => [:new]
   # GET /works
   # GET /works.xml
   def index
@@ -26,7 +26,9 @@ class WorksController < ApplicationController
   # GET /works/new
   # GET /works/new.xml
   def new
+    @externalwork = @project.stories.all(:modified_since => '1/5/2011')
     @work = Work.new
+    @work.description = @externalwork
 
     respond_to do |format|
       format.html # new.html.erb
@@ -83,5 +85,10 @@ class WorksController < ApplicationController
   
     def find_work
       @work = current_user.works.find(params[:id])
+    end
+    
+    def ext_work
+      PivotalTracker::Client.token = "4853d8b62815323ec2d750d5b3ca4e22"
+      @project = PivotalTracker::Project.find(242503)	
     end
 end

@@ -7,6 +7,9 @@ gem 'rails', '3.0.5'
 
 gem 'mysql2'
 gem 'devise'
+gem 'builder'
+gem 'hpricot'
+gem 'pivotal-tracker'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -33,6 +36,7 @@ gem 'devise'
 
 group :development do
   gem 'rspec-rails', '2.5.0'
+  gem 'annotate-models', '1.0.4'
 end
 
 group :test do

@@ -6,6 +6,8 @@ TimeSheet::Application.routes.draw do
   get "pages/contact"  
 
   devise_for :users
+  
+  match 'activity' => 'activity#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
