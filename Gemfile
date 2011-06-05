@@ -41,6 +41,9 @@ group :development do
 end
 
 group :test do
+  gem 'autotest-growl'
+  gem 'autotest-fsevent'
+  gem 'ZenTest'
   gem 'rspec', '2.5.0'
   gem 'webrat', '0.7.3'
   gem 'factory_girl_rails', '1.0'
