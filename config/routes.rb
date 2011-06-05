@@ -1,11 +1,8 @@
 TimeSheet::Application.routes.draw do
   resources :works
-
-  get "pages/home"
-
-  get "pages/contact"  
   
-  get "pages/about"
+  match '/contact', :to => "pages#contact"
+  match '/about', :to => "pages#about"
 
   devise_for :users
   

@@ -6,6 +6,7 @@ class WorksController < ApplicationController
   # GET /works
   # GET /works.xml
   def index
+    @title = "List of work"
     @works = current_user.works
     
     respond_to do |format|
@@ -26,9 +27,11 @@ class WorksController < ApplicationController
   # GET /works/new
   # GET /works/new.xml
   def new
-    @externalwork = @project.stories.all(:modified_since => '1/5/2011')
+    @title = "New work"
+    @activity = @project.activities.all
     @work = Work.new
-    @work.description = @externalwork
+    @work.description = @activity.select {|a| a.occurred_at > Date.today}.first.description
+    
 
     respond_to do |format|
       format.html # new.html.erb
