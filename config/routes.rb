@@ -1,9 +1,11 @@
 TimeSheet::Application.routes.draw do
-  resources :works
+  
   
   match '/contact', :to => "pages#contact"
   match '/about', :to => "pages#about"
+  match '/works/all', :to => "works#all_work"
 
+  resources :works
   devise_for :users
   
   match 'activity' => 'activity#index'

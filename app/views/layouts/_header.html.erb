@@ -3,6 +3,7 @@
 		<nav class="#user-navigation">
 			<ul class="hmenu">
 				<li><%= link_to "Work", works_path%></li>
+				<%= render 'devise/menu/admin' %>
 				<%= render 'devise/menu/registration_items' %>
 				<%= render 'devise/menu/login_items' %>
 			</ul>

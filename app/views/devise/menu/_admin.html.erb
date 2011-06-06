@@ -1,0 +1,5 @@
+<% if current_user.try(:admin?) %>
+  <li>
+  <%= link_to('All work', works_all_path) %>
+  </li>
+<% end %>

@@ -1,12 +1,13 @@
 class WorksController < ApplicationController
   
   before_filter :authenticate_user!
+  before_filter :admin?
   before_filter :find_work, :only => [:show, :edit, :update, :destroy]
   before_filter :ext_work, :only => [:new]
   # GET /works
   # GET /works.xml
   def index
-    @title = "List of work"
+    @title = "List of my work"
     @works = current_user.works
     
     respond_to do |format|
@@ -30,8 +31,15 @@ class WorksController < ApplicationController
     @title = "New work"
     @activity = @project.activities.all
     @work = Work.new
-    @work.description = @activity.select {|a| a.occurred_at > Date.today}.first.description
-    
+    @today_activity =  @activity.select {|a| a.occurred_at > Date.today}
+    if @today_activity.nil?
+      @work.description = "Nil"
+    else
+      @description = ""
+      @today_activity.each {|activity| @description += activity.description + "\n"}
+      @work.description = @description.to_s()
+    end
+      
 
     respond_to do |format|
       format.html # new.html.erb
@@ -84,6 +92,10 @@ class WorksController < ApplicationController
     end
   end
   
+  def all_work
+    @works = Work.all
+  end
+  
   private
   
     def find_work
@@ -93,5 +105,11 @@ class WorksController < ApplicationController
     def ext_work
       PivotalTracker::Client.token = "4853d8b62815323ec2d750d5b3ca4e22"
       @project = PivotalTracker::Project.find(242503)	
+    end
+    
+    def admin?
+      if !current_user.admin?
+       redirect_to root_path, :notice => "Please sign in as admin to access this page."
+      end
     end
 end
