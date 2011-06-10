@@ -10,7 +10,6 @@ gem 'devise'
 gem 'builder'
 gem 'hpricot'
 gem 'pivotal-tracker'
-gem 'web-app-theme', :path => File.join(File.dirname(__FILE__), '/vendor/gems/web-app-theme')
 
 # Use unicorn as the web server
 # gem 'unicorn'

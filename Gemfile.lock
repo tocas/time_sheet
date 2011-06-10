@@ -1,8 +1,3 @@
-PATH
-  remote: vendor/gems/web-app-theme
-  specs:
-    web-app-theme (0.6.3)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -135,5 +130,4 @@ DEPENDENCIES
   rails (= 3.0.5)
   rspec (= 2.5.0)
   rspec-rails (= 2.5.0)
-  web-app-theme!
   webrat (= 0.7.3)
