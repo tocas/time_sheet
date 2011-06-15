@@ -1,7 +1,7 @@
 class WorksController < ApplicationController
   
   before_filter :authenticate_user!
-  before_filter :admin?
+  before_filter :admin?, :only => [:all_work]
   before_filter :find_work, :only => [:show, :edit, :update, :destroy]
   before_filter :ext_work, :only => [:new]
   # GET /works
