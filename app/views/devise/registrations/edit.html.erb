@@ -1,0 +1,17 @@
+<table class="profile" summary="Profile information">
+<tr>
+    <td class="main">
+      <h1>
+		 <%= gravatar_for current_user %>
+		  <%= current_user.email %>
+      </h1>
+		
+    </td>
+    <td class="sidebar round">
+		<%= render 'devise/registrations/change_password' %>
+		<%= render 'devise/registrations/cancel_account' %>
+    </td>
+  </tr>
+</table>
+
+<%= link_to "Back", :back %>

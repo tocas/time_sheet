@@ -37,13 +37,14 @@ gem 'pivotal-tracker'
 group :development do
   gem 'rspec-rails', '2.5.0'
   gem 'annotate-models', '1.0.4'
+  gem 'gravatar_image_tag', '1.0.0.pre2'
 end
 
 group :test do
   gem 'autotest-growl'
   gem 'autotest-fsevent'
   gem 'ZenTest'
-  gem 'rspec', '2.5.0'
+  gem 'rspec'
   gem 'webrat', '0.7.3'
   gem 'factory_girl_rails', '1.0'
 end

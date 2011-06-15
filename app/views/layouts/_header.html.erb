@@ -1,12 +1,11 @@
-<div id="header">
-	<header >
-		<nav class="round">
-			<ul>
-				<li><%= link_to "Work", works_path%></li>
-				<%= render 'devise/menu/admin' %>
-				<%= render 'devise/menu/registration_items' %>
-				<%= render 'devise/menu/login_items' %>
-			</ul>
-		</nav>
-	</header>
-</div>
+<header>
+	<%= link_to logo, root_path %>
+	<nav class="round">
+		<ul>
+			<li><%= link_to "Work", works_path%></li>
+			<%= render 'devise/menu/admin' %>
+			<%= render 'devise/menu/registration_items' %>
+			<%= render 'devise/menu/login_items' %>
+		</ul>
+	</nav>
+</header>
