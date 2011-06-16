@@ -1,6 +1,8 @@
 TimeSheet::Application.routes.draw do
   
   
+  resources :settings
+
   match '/contact', :to => "pages#contact"
   match '/about', :to => "pages#about"
   match '/works/all', :to => "works#all_work"

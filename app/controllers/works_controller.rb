@@ -112,4 +112,8 @@ class WorksController < ApplicationController
        redirect_to root_path, :notice => "Please sign in as admin to access this page."
       end
     end
+    
+    def pivotal_tracker_token
+      "4853d8b62815323ec2d750d5b3ca4e22"
+    end
 end
