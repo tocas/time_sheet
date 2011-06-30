@@ -103,7 +103,7 @@ class WorksController < ApplicationController
     end
     
     def ext_work
-      PivotalTracker::Client.token = "4853d8b62815323ec2d750d5b3ca4e22"
+      PivotalTracker::Client.token = current_user.settings.where('settings.name' => 'Pivotal Tracker').first.APIkey
       @project = PivotalTracker::Project.find(242503)	
     end
     

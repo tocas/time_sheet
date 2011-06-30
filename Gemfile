@@ -5,7 +5,7 @@ gem 'rails', '3.0.5'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
+gem 'mysql2', '~> 0.2.7'
 gem 'devise'
 gem 'builder'
 gem 'hpricot'
@@ -38,6 +38,7 @@ group :development do
   gem 'rspec-rails', '2.5.0'
   gem 'annotate-models', '1.0.4'
   gem 'gravatar_image_tag', '1.0.0.pre2'
+  gem 'cucumber'
 end
 
 group :test do
@@ -45,6 +46,10 @@ group :test do
   gem 'autotest-fsevent'
   gem 'ZenTest'
   gem 'rspec'
+  gem 'rspec-rails', '2.5.0'
+  gem 'cucumber-rails'
   gem 'webrat', '0.7.3'
+  gem 'cucumber'
   gem 'factory_girl_rails', '1.0'
+  gem 'spork'
 end
