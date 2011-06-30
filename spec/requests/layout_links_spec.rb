@@ -24,4 +24,18 @@ describe "LayoutLinks" do
     click_link "Register"
     response.should be_success
   end
+  
+  it "should have link to '/about' pate" do
+    visit root_path
+    click_link "About"
+    response.should be_success
+    response.should have_selector('title', :content => "About")
+  end
+  
+  it "should have link to '/contact' pate" do
+    visit root_path
+    click_link "Contact"
+    response.should be_success
+    response.should have_selector('title', :content => "Contact")
+  end
 end
