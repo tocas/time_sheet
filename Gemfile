@@ -35,7 +35,7 @@ gem 'pivotal-tracker'
 # end
 
 group :development do
-  gem 'rspec-rails', '2.5.0'
+  gem 'rspec-rails'
   gem 'annotate-models', '1.0.4'
   gem 'gravatar_image_tag', '1.0.0.pre2'
   gem 'cucumber'
@@ -45,8 +45,8 @@ group :test do
   gem 'autotest-growl'
   gem 'autotest-fsevent'
   gem 'ZenTest'
-  gem 'rspec'
-  gem 'rspec-rails', '2.5.0'
+  gem "rspec"
+  gem 'rspec-rails'
   gem 'cucumber-rails'
   gem 'webrat', '0.7.3'
   gem 'cucumber'
