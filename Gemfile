@@ -38,7 +38,6 @@ group :development do
   gem 'rspec-rails'
   gem 'annotate-models', '1.0.4'
   gem 'gravatar_image_tag', '1.0.0.pre2'
-  gem 'cucumber'
 end
 
 group :test do
@@ -47,9 +46,10 @@ group :test do
   gem 'ZenTest'
   gem "rspec"
   gem 'rspec-rails'
-  gem 'cucumber-rails'
-  gem 'webrat', '0.7.3'
-  gem 'cucumber'
+  gem "cucumber-rails", "~> 1.0.2"  
+  gem "capybara", "~> 1.0.0"
+  gem "cucumber", "~> 1.0.0"
   gem 'factory_girl_rails', '1.0'
   gem 'spork'
+  gem "database_cleaner", "~> 0.6.7"
 end
