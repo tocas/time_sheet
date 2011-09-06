@@ -9,8 +9,8 @@ Given /^I have one\s+user "([^\"]*)" with password "([^\"]*)"$/ do |email, passw
 end
 
 Given /^I am a new, authenticated user$/ do
-  email = 'testing@man.net'
-  password = 'secretpass'
+  email = 'tomaslucovic@gmail.com'
+  password = 'laggoq'
 
   Given %{I have one user "#{email}" with password "#{password}"}
   And %{I go to login}

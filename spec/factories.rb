@@ -11,7 +11,7 @@ Factory.define :admin, :parent => :user do |f|
 end
 
 Factory.define :work do |work|
-  work.day          Date.today
+  work.day          Date.today.to_s()
   work.description  "New define work"
   work.time         4
   work.user_id      1

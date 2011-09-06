@@ -9,10 +9,12 @@ describe Work do
       :time => 4,
       :user_id => 1 
     }
+    @work = Factory.build(:work)
+    @work.save
   end
 
   it "should create a new instance given valid attributes" do
-    Work.create!(@attr)
+    @work.should be_valid
   end
 
   it "should require a user_id" do
@@ -36,5 +38,11 @@ describe Work do
     non_day = "pátek"
     non_day_work = Work.new(@attr.merge(:day => non_day))
     non_day_work.should_not be_valid
+  end
+  
+  it "should reject date whitch already exist" do
+    work = Work.new(@attr.merge(:time => 3))
+    work.save
+    work.should_not be_valid
   end
 end

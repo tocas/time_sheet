@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.5'
+gem 'rails', '3.0.8'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -46,6 +46,7 @@ group :test do
   gem 'ZenTest'
   gem "rspec"
   gem 'rspec-rails'
+  gem 'webrat'
   gem "cucumber-rails", "~> 1.0.2"  
   gem "capybara", "~> 1.0.0"
   gem "cucumber", "~> 1.0.0"
