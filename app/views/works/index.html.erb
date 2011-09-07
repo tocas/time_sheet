@@ -1,12 +1,11 @@
 <h1>Work list</h1>
 
-<%= form_tag("/works", :method => "get") do%>
+<%= form_tag(works_path, :method => "get") do%>
   <%= select_month(@month,:field_name => 'month') %>
   <%= select_year(@year, :field_name => 'year') %>
   <%= submit_tag("Show") %>
 <% end %>
 
-<%= @work2 %>
 <table>
   <tr>
     <th>Day</th>
@@ -17,12 +16,26 @@
     <th></th>
   </tr>
 
+
+<% @works = @works.reverse %>
+<% work = @works.pop %>
+
 <% @days.each do |day| %>
+  <% if  work["day"] == day%>
+	<tr>
+    <td><%= work.day.strftime('%d') %></td>
+    <td><%= work.description %></td>
+    <td><%= work.time %></td>
+    <td><%= link_to 'Show', work %></td>
+    <td><%= link_to 'Edit', edit_work_path(work) %></td>
+    <td><%= link_to 'Destroy', work, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+  <% end %>
   <tr>
-	<td><%= day.strftime('%d %b %Y') %></td>
+	<td><%= day.strftime('%d') %></td>
 	<td></td>
 	<td></td>
-	<td></td>
+	<td><%= link_to 'Add', new_work_path(:day => day) %></td>
 	<td></td>
 	<td></td>
   </tr>

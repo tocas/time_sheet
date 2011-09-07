@@ -41,9 +41,22 @@ class WorksController < ApplicationController
   # GET /works/new.xml
   def new
     @title = "New work"
+     @attr = { 
+        :day => Date.today.to_s() , 
+        :description => "", 
+        :time => nil,
+        :user_id => nil 
+      }
+    
+    
+    if params["day"]
+      @attr = @attr.merge(:day => params["day"])
+    end
+    
+    #pivotal tracker
     @activity = @project.activities.all
-    @work = Work.new
-    @today_activity =  @activity.select {|a| a.occurred_at > Date.today}
+    @work = Work.new(@attr)
+    @today_activity =  @activity.select {|a| a.occurred_at > @work.day}
     if @today_activity.nil?
       @work.description = "Nil"
     else
@@ -51,7 +64,6 @@ class WorksController < ApplicationController
       @today_activity.each {|activity| @description += activity.description + "\n"}
       @work.description = @description.to_s()
     end
-      
 
     respond_to do |format|
       format.html # new.html.erb
