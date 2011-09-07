@@ -8,8 +8,20 @@ class WorksController < ApplicationController
   # GET /works.xml
   def index
     @title = "List of my work"
-    @works = current_user.works
+   
+    if !params["date"]
+      @month = Time.now.month
+      @year  = Time.now.year
+    else
+      date = params["date"]
+      @month = date["month"].to_i
+      @year = date["year"].to_i
+    end
+    @day = Date.new(@year,@month,1)
+    @days = (@day.beginning_of_month..@day.end_of_month ).to_a
     
+    @works = current_user_work(@day.beginning_of_month,@day.end_of_month)
+     
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @works }
@@ -100,6 +112,10 @@ class WorksController < ApplicationController
   
     def find_work
       @work = current_user.works.find(params[:id])
+    end
+    
+    def current_user_work(start_day,stop_day)
+      @work = current_user.works.find(:all, :conditions => [ "day >= ? AND day <= ?", start_day, stop_day])   
     end
     
     def ext_work

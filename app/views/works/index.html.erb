@@ -1,5 +1,12 @@
 <h1>Work list</h1>
 
+<%= form_tag("/works", :method => "get") do%>
+  <%= select_month(@month,:field_name => 'month') %>
+  <%= select_year(@year, :field_name => 'year') %>
+  <%= submit_tag("Show") %>
+<% end %>
+
+<%= @work2 %>
 <table>
   <tr>
     <th>Day</th>
@@ -9,6 +16,17 @@
     <th></th>
     <th></th>
   </tr>
+
+<% @days.each do |day| %>
+  <tr>
+	<td><%= day.strftime('%d %b %Y') %></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+  </tr>
+<% end%>
 
 <% @works.each do |work| %>
   <tr>
