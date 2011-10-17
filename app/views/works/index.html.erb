@@ -21,7 +21,7 @@
 <% work = @works.pop %>
 
 <% @days.each do |day| %>
-  <% if  work["day"] == day%>
+  <% if  !work.nil? && work["day"] == day%>
 	<tr>
     <td><%= work.day.strftime('%d') %></td>
     <td><%= work.description %></td>
@@ -30,7 +30,7 @@
     <td><%= link_to 'Edit', edit_work_path(work) %></td>
     <td><%= link_to 'Destroy', work, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
-  <% end %>
+  <% else %>
   <tr>
 	<td><%= day.strftime('%d') %></td>
 	<td></td>
@@ -39,6 +39,7 @@
 	<td></td>
 	<td></td>
   </tr>
+  <% end %>
 <% end%>
 
 <% @works.each do |work| %>

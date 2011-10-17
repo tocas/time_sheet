@@ -3,7 +3,6 @@ class WorksController < ApplicationController
   before_filter :authenticate_user!
   before_filter :admin?, :only => [:all_work]
   before_filter :find_work, :only => [:show, :edit, :update, :destroy]
-  before_filter :ext_work, :only => [:new]
   # GET /works
   # GET /works.xml
   def index
@@ -53,17 +52,7 @@ class WorksController < ApplicationController
       @attr = @attr.merge(:day => params["day"])
     end
     
-    #pivotal tracker
-    @activity = @project.activities.all
-    @work = Work.new(@attr)
-    @today_activity =  @activity.select {|a| a.occurred_at > @work.day}
-    if @today_activity.nil?
-      @work.description = "Nil"
-    else
-      @description = ""
-      @today_activity.each {|activity| @description += activity.description + "\n"}
-      @work.description = @description.to_s()
-    end
+    fill_ext_work
 
     respond_to do |format|
       format.html # new.html.erb
@@ -130,18 +119,28 @@ class WorksController < ApplicationController
       @work = current_user.works.find(:all, :conditions => [ "day >= ? AND day <= ?", start_day, stop_day])   
     end
     
-    def ext_work
-      PivotalTracker::Client.token = current_user.settings.where('settings.name' => 'Pivotal Tracker').first.APIkey
-      @project = PivotalTracker::Project.find(242503)	
+    
+    def fill_ext_work
+      if current_user.settings.where('settings.name' => 'Pivotal Tracker').first.enabled
+        PivotalTracker::Client.token = current_user.settings.where('settings.name' => 'Pivotal Tracker').first.APIkey
+        @project = PivotalTracker::Project.find(242503)
+        #pivotal tracker
+        @activity = @project.activities.all
+        @work = Work.new(@attr)
+        @today_activity =  @activity.select {|a| a.occurred_at > @work.day}
+        if @today_activity.nil?
+          @work.description = "Nil"
+        else
+          @description = ""
+          @today_activity.each {|activity| @description += activity.description + "\n"}
+          @work.description = @description.to_s()
+        end
+      end
     end
     
     def admin?
       if !current_user.admin?
        redirect_to root_path, :notice => "Please sign in as admin to access this page."
       end
-    end
-    
-    def pivotal_tracker_token
-      "4853d8b62815323ec2d750d5b3ca4e22"
     end
 end
