@@ -51,6 +51,8 @@ class WorksController < ApplicationController
     if params["day"]
       @attr = @attr.merge(:day => params["day"])
     end
+    @work = Work.new(@attr)
+    
     
     fill_ext_work
 
@@ -126,7 +128,6 @@ class WorksController < ApplicationController
         @project = PivotalTracker::Project.find(242503)
         #pivotal tracker
         @activity = @project.activities.all
-        @work = Work.new(@attr)
         @today_activity =  @activity.select {|a| a.occurred_at > @work.day}
         if @today_activity.nil?
           @work.description = "Nil"
@@ -136,6 +137,7 @@ class WorksController < ApplicationController
           @work.description = @description.to_s()
         end
       end
+      
     end
     
     def admin?
