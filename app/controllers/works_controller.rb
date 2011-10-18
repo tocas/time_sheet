@@ -118,7 +118,7 @@ class WorksController < ApplicationController
     end
     
     def current_user_work(start_day,stop_day)
-      @work = current_user.works.find(:all, :conditions => [ "day >= ? AND day <= ?", start_day, stop_day])   
+      @work = current_user.works.find(:all, :conditions => [ "day >= ? AND day <= ?", start_day, stop_day], :order => "day")
     end
     
     

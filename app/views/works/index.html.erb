@@ -16,9 +16,9 @@
     <th></th>
   </tr>
 
-
 <% @works = @works.reverse %>
 <% work = @works.pop %>
+<% all_time = 0%>
 
 <% @days.each do |day| %>
   <% if  !work.nil? && work["day"] == day%>
@@ -30,6 +30,8 @@
     <td><%= link_to 'Edit', edit_work_path(work) %></td>
     <td><%= link_to 'Destroy', work, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
+  <% all_time += work.time %>
+  <% work = @works.pop %>
   <% else %>
   <tr>
 	<td><%= day.strftime('%d') %></td>
@@ -41,17 +43,14 @@
   </tr>
   <% end %>
 <% end%>
-
-<% @works.each do |work| %>
   <tr>
-    <td><%= work.day %></td>
-    <td><%= work.description %></td>
-    <td><%= work.time %></td>
-    <td><%= link_to 'Show', work %></td>
-    <td><%= link_to 'Edit', edit_work_path(work) %></td>
-    <td><%= link_to 'Destroy', work, :confirm => 'Are you sure?', :method => :delete %></td>
+	<td>Sum</td>
+	<td></td>
+	<td><%= all_time %></td>
+	<td></td>
+	<td></td>
+	<td></td>
   </tr>
-<% end %>
 </table>
 
 <br />
