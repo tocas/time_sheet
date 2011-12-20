@@ -10,6 +10,7 @@ gem 'devise'
 gem 'builder'
 gem 'hpricot'
 gem 'pivotal-tracker'
+gem 'pdfkit'
 
 # Use unicorn as the web server
 # gem 'unicorn'

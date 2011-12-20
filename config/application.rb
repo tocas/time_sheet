@@ -39,6 +39,6 @@ module TimeSheet
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
     config.secret_token = '64393f16868847576086857cecacb59ce23a6a6815a70fe5841aec9132b0466f1fab54a9f2d09e40c114d21a66ce4c49f436afdb146ee7554576a2906e2cf0b8'
-    
+    config.middleware.use "PDFKit::Middleware", :print_media_type => true
   end
 end

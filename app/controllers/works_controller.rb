@@ -33,6 +33,11 @@ class WorksController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @work }
+      format.pdf do
+        pdf = PDF::Writer.new
+        pdf.text "test"
+        send_data pdf.render, :filename => 'products.pdf', :type => 'application/pdf', :disposition => 'inline'
+      end
     end
   end
 

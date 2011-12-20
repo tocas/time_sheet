@@ -6,6 +6,7 @@ TimeSheet::Application.routes.draw do
   match '/contact', :to => "pages#contact"
   match '/about', :to => "pages#about"
   match '/works/all', :to => "works#all_work"
+  match '/api/create', :to => "api#create"
 
   resources :works
   devise_for :users

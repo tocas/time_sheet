@@ -88,6 +88,7 @@ GEM
     mysql2 (0.2.11)
     nokogiri (1.4.7)
     orm_adapter (0.0.5)
+    pdfkit (0.5.2)
     pivotal-tracker (0.2.0)
       builder
       happymapper (>= 0.2.4)
@@ -169,6 +170,7 @@ DEPENDENCIES
   gravatar_image_tag (= 1.0.0.pre2)
   hpricot
   mysql2 (~> 0.2.7)
+  pdfkit
   pivotal-tracker
   rails (= 3.0.8)
   rspec
