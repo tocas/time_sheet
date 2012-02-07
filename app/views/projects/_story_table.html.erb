@@ -1,0 +1,16 @@
+<p>Project tasks</p>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @stories.each do |story| %>
+  <tr>
+    <td><%= link_to story.name, project_story_path(@project.id, story.id) %></td>
+    <td><%= story.description %></td>
+  </tr>
+<% end %>
+</table>

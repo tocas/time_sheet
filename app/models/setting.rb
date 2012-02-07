@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110616224220
+# Schema version: 20111220151843
 #
 # Table name: settings
 #
@@ -9,6 +9,7 @@
 #  created_at :datetime
 #  updated_at :datetime
 #  user_id    :integer(4)      not null
+#  enabled    :boolean(1)
 #
 
 class Setting < ActiveRecord::Base

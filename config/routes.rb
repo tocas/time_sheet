@@ -1,13 +1,18 @@
 TimeSheet::Application.routes.draw do
   
   
+  
+
+  resources :projects
+
   resources :settings
 
   match '/contact', :to => "pages#contact"
   match '/about', :to => "pages#about"
   match '/works/all', :to => "works#all_work"
   match '/api/create', :to => "api#create"
-
+  match '/projects/:project_id/story/:story_id', :to => "projects#story", as: :project_story
+  
   resources :works
   devise_for :users
   

@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110509203229
+# Schema version: 20111220151843
 #
 # Table name: works
 #
@@ -10,10 +10,12 @@
 #  created_at  :datetime
 #  updated_at  :datetime
 #  user_id     :integer(4)      not null
+#  task_id     :integer(4)      not null
 #
 
 class Work < ActiveRecord::Base
   belongs_to :user
+  belongs_to :task
   
   validates :day, :presence => true, :uniqueness => {:scope => :user_id}
   validates :time, :presence =>true

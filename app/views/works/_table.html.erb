@@ -1,0 +1,35 @@
+<p>Task works</p>
+<table>
+  <thead>
+    <tr>
+      <th>Day</th>
+      <th>Description</th>
+      <th>User</th>
+      <th>Time</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @works.each do |work| %>
+    <tr>
+      <td><%= work.day %></td>
+      <td><%= link_to work.description, work %></td>
+      <td><%= work.user.email %></td>
+      <td><%= work.time %></td>
+      <td><%= link_to 'Edit', edit_work_path(work) %></td>
+      <td><%= link_to 'Destroy', work, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+    <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th>Celkem</th>
+      <th></th>
+      <th></th>
+      <th><%= @works_time %></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </tfood>
+</table>
