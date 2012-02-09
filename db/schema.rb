@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(:version => 20120206152728) do
     t.integer  "time"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id",     :null => false
     t.integer  "project_id"
     t.integer  "story_id"
   end

@@ -33,6 +33,7 @@ class WorksController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @work }
+      format.json { render :json => @work}
       format.pdf do
         pdf = PDF::Writer.new
         pdf.text "test"

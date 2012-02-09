@@ -91,6 +91,8 @@ class ProjectsController < ApplicationController
     
     @project = PivotalTracker::Project.find(params[:project_id].to_i)
     @story = @project.stories.find(params[:story_id].to_i)
+    @works = Work.where("project_id >= :project_id AND story_id <= :story_id", {:project_id => params[:project_id], :story_id => params[:story_id].to_i})
+    @story_time = @works.map(&:time).inject(:+)
          
     respond_to do |format|
       format.html { render :action => "story" }

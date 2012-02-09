@@ -15,9 +15,8 @@
 
 class Work < ActiveRecord::Base
   belongs_to :user
-  belongs_to :task
   
-  validates :day, :presence => true, :uniqueness => {:scope => :user_id}
+  validates :day, :presence => true
   validates :time, :presence =>true
   validates :description,  :presence => true,
                             :length   => { :maximum => 255 }
