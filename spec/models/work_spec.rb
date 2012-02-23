@@ -40,9 +40,9 @@ describe Work do
     non_day_work.should_not be_valid
   end
   
-  it "should reject date whitch already exist" do
+  it "should allow date whitch already exist" do
     work = Work.new(@attr.merge(:time => 3))
     work.save
-    work.should_not be_valid
+    work.should be_valid
   end
 end

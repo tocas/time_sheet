@@ -1,9 +1,12 @@
 class ProjectsController < ApplicationController
+
+  before_filter :authenticate_user!
+  
   # GET /projects
   # GET /projects.xml
   def index
     #@projects = Project.all
-    PivotalTracker::Client.token = '4853d8b62815323ec2d750d5b3ca4e22'
+    PivotalTracker::Client.token = current_user.settings.first.APIkey
 
     @projects = PivotalTracker::Project.all
     respond_to do |format|
@@ -15,7 +18,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.xml
   def show
-    PivotalTracker::Client.token = '4853d8b62815323ec2d750d5b3ca4e22'
+    PivotalTracker::Client.token = current_user.settings.first.APIkey
     
     @project = PivotalTracker::Project.find(params[:id].to_i)
     @stories = @project.stories.all
@@ -87,7 +90,7 @@ class ProjectsController < ApplicationController
   end
   
   def story
-    PivotalTracker::Client.token = '4853d8b62815323ec2d750d5b3ca4e22'
+    PivotalTracker::Client.token = current_user.settings.first.APIkey
     
     @project = PivotalTracker::Project.find(params[:project_id].to_i)
     @story = @project.stories.find(params[:story_id].to_i)
