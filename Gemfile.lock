@@ -169,6 +169,7 @@ DEPENDENCIES
   factory_girl_rails (= 1.0)
   gravatar_image_tag (= 1.0.0.pre2)
   hpricot
+  json
   mysql2 (~> 0.2.7)
   pdfkit
   pivotal-tracker
