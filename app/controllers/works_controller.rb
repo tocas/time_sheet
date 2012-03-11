@@ -19,7 +19,7 @@ class WorksController < ApplicationController
     @day = Date.new(@year,@month,1)
     @days = (@day.beginning_of_month..@day.end_of_month ).to_a
     
-    @works = current_user_work(@day.beginning_of_month,@day.end_of_month)
+    @works = current_user.works.order('day DESC')
      
     respond_to do |format|
       format.html # index.html.erb

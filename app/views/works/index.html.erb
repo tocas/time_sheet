@@ -1,58 +1,23 @@
 <h1>Work list</h1>
 
-<%= form_tag(works_path, :method => "get") do%>
-  <%= select_month(@month,:field_name => 'month') %>
-  <%= select_year(@year, :field_name => 'year') %>
-  <%= submit_tag("Show") %>
-<% end %>
+<style>
+ table { table-layout: fixed; }
+ table th, table td { overflow: hidden; }
+</style>
 
-<table>
+<table class="table table-striped">
   <tr>
-    <th>Day</th>
-    <th>Description</th>
-    <th>Time</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th style="width: 10%">Day</th>
+    <th style="width: 80%">Description</th>
+    <th style="width: 10%">Time</th>
   </tr>
-
-<% @works = @works.reverse %>
-<% work = @works.pop %>
-<% all_time = 0%>
-
-<% @days.each do |day| %>
-  <% if  !work.nil? && work["day"] == day%>
-	<tr>
-    <td><%= work.day.strftime('%d') %></td>
+<% @works.each do |work| %>
+  <tr>
+    <td><%= work.day %></td>
     <td><%= work.description %></td>
     <td><%= work.time %></td>
-    <td><%= link_to 'Show', work %></td>
-    <td><%= link_to 'Edit', edit_work_path(work) %></td>
-    <td><%= link_to 'Destroy', work, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
-  <% all_time += work.time %>
-  <% work = @works.pop %>
-  <% else %>
-  <tr>
-	<td><%= day.strftime('%d') %></td>
-	<td></td>
-	<td></td>
-	<td><%= link_to 'Add', new_work_path(:day => day) %></td>
-	<td></td>
-	<td></td>
-  </tr>
-  <% end %>
-<% end%>
-  <tr>
-	<td>Sum</td>
-	<td></td>
-	<td><%= all_time %></td>
-	<td></td>
-	<td></td>
-	<td></td>
-  </tr>
+<% end %>
 </table>
-
-<br />
 
 <%= link_to 'New Work', new_work_path %>
