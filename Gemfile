@@ -11,6 +11,7 @@ gem 'builder'
 gem 'hpricot'
 gem 'pivotal-tracker'
 gem 'pdfkit'
+gem 'json'
 
 # Use unicorn as the web server
 # gem 'unicorn'
