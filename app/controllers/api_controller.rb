@@ -9,7 +9,5 @@ class ApiController < ApplicationController
       logger.debug "NOT SAVE"
     end
     logger.debug "The user is #{@user}"
-    
-    
   end
 end
