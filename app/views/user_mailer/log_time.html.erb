@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Ahoj</h1>
+    <p>
+      Jak dlouho jsi stravil na ukolu: <br/>
+      <%= @activity.description %>
+    </p>
+    <p>
+      <%= link_to "0.5 hodiny", @url30%>
+      <%= link_to "1. hodinu", @url60%>
+    </p>
+  </body>
+</html>

@@ -42,10 +42,12 @@ TimeSheet::Application.configure do
 
   # these options are only needed if you choose smtp delivery
   config.action_mailer.smtp_settings = {
+    :enable_starttls_auto => true,
     :address        => 'smtp.gmail.com',
     :port           => 587,
-    :domain         => 'www.time-sheet.com',
+    :domain         => 'your.domain.com',
     :authentication => :login,
+    :content_type   => "text/html",
     :user_name      => 'secretarytimesheet@gmail.com',
     :password       => '7IAgfyDpWq67'
   }
