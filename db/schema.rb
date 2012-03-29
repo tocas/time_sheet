@@ -10,7 +10,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120206152728) do
+ActiveRecord::Schema.define(:version => 20120328222959) do
+
+  create_table "pt_activities", :force => true do |t|
+    t.integer  "activity_id"
+    t.integer  "project_id"
+    t.integer  "story_id"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "settings", :force => true do |t|
     t.string   "name"
