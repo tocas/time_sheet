@@ -11,13 +11,33 @@
     <th style="width: 80%">Description</th>
     <th style="width: 10%">Time</th>
   </tr>
+  <% day = Date.today + 1 %>
+  <% day_time = 0%>
 <% @works.each do |work| %>
+  <% if (day != work.day)%>
+    <% if (day != Date.today + 1)%>
+    <tr>
+      <td>Summary: </td>
+      <td></td>
+      <td><%= minutes_to_hours(day_time) %> h.</td>
+    </tr>
+    <% end %>
+    <tr>
+      <td colspan = 3><%= work.day.to_formatted_s(:long) %></td>
+    </tr>
+    <% day = work.day %>
+    <% day_time = 0 %>
+  <% end %>
   <tr>
-    <td><%= work.day %></td>
+    <td></td>
     <td><%= work.description %></td>
-    <td><%= work.time %></td>
+    <td><%= minutes_to_hours(work.time) %> h.</td>
   </tr>
+  <% day_time += work.time %>
 <% end %>
+<tr>
+  <td colspan = 3>Summary: <%= day_time %></td>
+</tr>
 </table>
 
 <%= link_to 'New Work', new_work_path %>

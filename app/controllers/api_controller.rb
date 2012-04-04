@@ -17,7 +17,8 @@ class ApiController < ApplicationController
     @time = params[:time]
     @activity = PtActivity.where("activity_id = ?", @activity_id).first
     @user = User.where(["email = ?", "tomaslucovic@gmail.com"]).first
-    @work = @user.works.build(:day => '2012-03-29', :description => @activity.description, :time => @time, :project_id => @activity.project_id, :story_id => @activity.story_id)
+    logger.debug @activity.day
+    @work = @user.works.build(:day => @activity.day, :description => @activity.description, :time => @time, :project_id => @activity.project_id, :story_id => @activity.story_id)
     logger.debug @wokr
     if @work.save 
       logger.debug "Work saved"
