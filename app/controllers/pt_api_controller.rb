@@ -7,15 +7,20 @@ class PtApiController < ApplicationController
     @story_id = doc.find('//story/id/text()')[0]
     @description = doc.find('//description/text()')[0]
     @date = parse_date(doc.find('//occurred_at/text()')[0])
-    logger.debug @date
-    @user = User.where(["email = ?", "tomaslucovic@gmail.com"]).first
+    user_name = doc.find('//author/text()')[0]
+    logger.debug user_name
+    setting = Setting.where("APIkey = ?", user_name.to_s).first
+    @user = setting.user
+    
+    User.where(["email = ?", @user.email]).first
     
     @pt = PtActivity.new(:activity_id => @activity_id, 
                          :project_id => @project_id.content, 
                          :story_id => @story_id.content, 
                          :description => @description.content, 
                          :day => @date,
-                         :user => @user.email)
+                         :user => @user.email,
+                         :fill_in => false)
     
     if @pt.save
       UserMailer.log_time(@user,@pt).deliver

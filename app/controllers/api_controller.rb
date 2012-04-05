@@ -15,16 +15,24 @@ class ApiController < ApplicationController
   def log_time
     @activity_id = params[:activity_id]
     @time = params[:time]
-    @activity = PtActivity.where("activity_id = ?", @activity_id).first
-    @user = User.where(["email = ?", "tomaslucovic@gmail.com"]).first
-    logger.debug @activity.day
-    @work = @user.works.build(:day => @activity.day, :description => @activity.description, :time => @time, :project_id => @activity.project_id, :story_id => @activity.story_id)
-    logger.debug @wokr
-    if @work.save 
-      logger.debug "Work saved"
-      @message = "Prace byla ulozena"
+    @activity = PtActivity.where("activity_id = ? AND fill_in = ?", @activity_id, false).first
+    @user = User.where(["email = ?", params[:user]]).first
+    if @activity && @user
+      logger.debug "true"
+      @work = @user.works.build(:day => @activity.day, :description => @activity.description, :time => @time, :project_id => @activity.project_id, :story_id => @activity.story_id)
+      if @work.save
+        @activity.fill_in = true
+        if @activity.save
+          logger.debug "Work saved"
+          @message = "Prace byla ulozena"
+        end
+      else
+        @message = "Neulozeno"
+        logger.debug "NOT SAVE"
+      end
     else
-      logger.debug "NOT SAVE"
+        @message = "Neulozeno, aktivita nebo uzivatel nenalezen."
+        logger.debug "NOT SAVE"
     end
   end
 end

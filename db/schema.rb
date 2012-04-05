@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120329100809) do
+ActiveRecord::Schema.define(:version => 20120404151114) do
 
   create_table "pt_activities", :force => true do |t|
     t.integer  "activity_id"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20120329100809) do
     t.datetime "updated_at"
     t.date     "day"
     t.string   "user"
+    t.boolean  "fill_in"
   end
 
   create_table "settings", :force => true do |t|

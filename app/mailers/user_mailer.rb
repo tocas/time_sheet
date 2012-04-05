@@ -5,12 +5,12 @@ class UserMailer < ActionMailer::Base
     @user = user
     @activity = activity
     if Rails.env.production?
-      @url30 = 'http://time-sheet.heroku.com/api/log-time/' + @activity.activity_id.to_s + '/30'
-      @url60 = 'http://time-sheet.heroku.com/api/log-time/' + @activity.activity_id.to_s + '/60'
+      @url30 = 'http://time-sheet.heroku.com/api/log-time/' + @activity.activity_id.to_s + '/30?user=' + @user.email
+      @url60 = 'http://time-sheet.heroku.com/api/log-time/' + @activity.activity_id.to_s + '/60?user=' + @user.email
       
     else
-      @url30 = 'http://localhost:3000/api/log-time/' + @activity.activity_id.to_s + '/30'
-      @url60 = 'http://localhost:3000/api/log-time/' + @activity.activity_id.to_s + '/60'
+      @url30 = 'http://localhost:3000/api/log-time/' + @activity.activity_id.to_s + '/30?user=' + @user.email
+      @url60 = 'http://localhost:3000/api/log-time/' + @activity.activity_id.to_s + '/60?user=' + @user.email
     end
     mail(:to => user.email, :subject => 'Vyplnte prosim vykaz')
   end
