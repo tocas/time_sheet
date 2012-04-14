@@ -9,7 +9,7 @@ class PtApiController < ApplicationController
     @date = parse_date(doc.find('//occurred_at/text()')[0])
     user_name = doc.find('//author/text()')[0]
     logger.debug user_name
-    setting = Setting.where("APIkey = ?", user_name.to_s).first
+    setting = Setting.where("Apikey = ?", user_name.to_s).first
     @user = setting.user
     
     User.where(["email = ?", @user.email]).first
