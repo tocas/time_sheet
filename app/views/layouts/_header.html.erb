@@ -4,13 +4,22 @@
       <div class="container">
       	<ul class="nav">
       	  <%= link_to "Time Sheet version 2.0.1", root_path, :class => 'brand'%>
-          <li class="active">
-            <a href="#">Home</a>
-          </li>
-          <li><%= link_to "Projects", projects_path%></li>
-          <li><%= link_to "My Work", works_path%></li>
-          <%= render 'devise/menu/admin' %>
-    			<li><%= link_to "Settings", settings_path, :class => 'pull-right'%></li>
+      	  <%if @title.to_s == "Work" %>
+            <li class = "active"><%= link_to "My Work", works_path%></li>
+          <% else %>
+            <li><%= link_to "My Work", works_path%></li>
+          <%end%>
+          <%if @title.to_s == "Projects" %>
+            <li class = "active"><%= link_to "Projects", projects_path%></li>
+          <% else %>
+            <li><%= link_to "Projects", projects_path%></li>
+          <%end%>
+          <%if @title.to_s == "Settings" %>
+            <li class = "active"><%= link_to "Settings", settings_path%></li>
+          <% else %>
+            <li><%= link_to "Settings", settings_path%></li>
+          <%end%>
+    			<%= render 'devise/menu/admin' %>
         </ul>
         <ul class="nav pull-right">
           <%= render 'devise/menu/registration_items' %>

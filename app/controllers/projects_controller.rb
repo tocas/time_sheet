@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
 
   before_filter :authenticate_user!
+  before_filter :set_title
   
   # GET /projects
   # GET /projects.xml
@@ -102,4 +103,9 @@ class ProjectsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  private
+    def set_title
+      @title = "Projects"
+    end
 end

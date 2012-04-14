@@ -3,10 +3,11 @@ class WorksController < ApplicationController
   before_filter :authenticate_user!
   before_filter :admin?, :only => [:all_work]
   before_filter :find_work, :only => [:show, :edit, :update, :destroy]
+  before_filter :set_title
+  
   # GET /works
   # GET /works.xml
   def index
-    @title = "List of my work"
    
     if !params["date"]
       @month = Time.now.month
@@ -150,5 +151,9 @@ class WorksController < ApplicationController
       if !current_user.admin?
        redirect_to root_path, :notice => "Please sign in as admin to access this page."
       end
+    end
+    
+    def set_title
+      @title = "Work"
     end
 end

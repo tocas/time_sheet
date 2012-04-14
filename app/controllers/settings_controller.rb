@@ -5,6 +5,7 @@ class SettingsController < ApplicationController
   
   before_filter :authenticate_user!
   before_filter :find_settings, :only => [:show, :edit, :update, :destroy]
+  before_filter :set_title
   
   def index
     @settings = current_user.settings
@@ -85,5 +86,9 @@ class SettingsController < ApplicationController
   private
     def find_settings
       @setting = current_user.settings.find(params[:id])
+    end
+    
+    def set_title
+      @title = "Settings"
     end
 end
