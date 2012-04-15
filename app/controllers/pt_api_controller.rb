@@ -24,7 +24,7 @@ class PtApiController < ApplicationController
     
     if @pt.save
       UserMailer.log_time(@user,@pt).deliver
-      
+      send_xmpp
     end    
   end
   
@@ -35,7 +35,39 @@ class PtApiController < ApplicationController
     end
     
     def send_xmpp
-      im = Jabber::Simple.new("secretarytimesheet@gmail.com", "7IAgfyDpWq67")
-      im.deliver(@user.email, "Ahoj kamarade")
+      # Login
+      jid = Jabber::JID::new('secretarytimesheet@gmail.com')
+      password = '7IAgfyDpWq67'
+      cl = Jabber::Client::new(jid)
+      cl.connect
+      cl.auth(password)
+
+      # Create a message
+      to = @user.email
+      subject = "Time-Sheet"
+      body = "Tvůj klient nepodportuje HTML."
+      m = Jabber::Message::new(to, body).set_type(:normal).set_id('1').set_subject(subject)
+
+      # Create the html part
+      h = REXML::Element::new("html")
+      h.add_namespace('http://jabber.org/protocol/xhtml-im')
+
+      # The body part with the correct namespace
+      b = REXML::Element::new("body")
+      b.add_namespace('http://www.w3.org/1999/xhtml')
+
+      html_message = "Jak dlouho jste strávil na úkolu " + @pt.description + "<br /><a href='http://time-sheet.heroku.com/api/log-time/" + @pt.activity_id.to_s + "/30?user=" + @user.email">0.5 hod.</a>"
+      
+      # The html itself
+      t = REXML::Text.new(html_message, false, nil, true, nil, %r/.^/ )
+
+      # Add the html text to the body, and the body to the html element
+      b.add(t)
+      h.add(b)
+
+      # Add the html element to the message
+      m.add_element(h)
+
+      # Send it
     end
 end
