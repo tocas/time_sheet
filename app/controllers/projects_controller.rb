@@ -2,13 +2,11 @@ class ProjectsController < ApplicationController
 
   before_filter :authenticate_user!
   before_filter :set_title
-  
+  before_filter :load_client_token
   # GET /projects
   # GET /projects.xml
   def index
     #@projects = Project.all
-    PivotalTracker::Client.token = current_user.settings.first.APIkey
-
     @projects = PivotalTracker::Project.all
     respond_to do |format|
       format.html # index.html.erb
@@ -18,9 +16,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1
   # GET /projects/1.xml
-  def show
-    PivotalTracker::Client.token = current_user.settings.first.APIkey
-    
+  def show    
     @project = PivotalTracker::Project.find(params[:id].to_i)
     @stories = @project.stories.all
 
@@ -91,8 +87,6 @@ class ProjectsController < ApplicationController
   end
   
   def story
-    PivotalTracker::Client.token = current_user.settings.first.APIkey
-    
     @project = PivotalTracker::Project.find(params[:project_id].to_i)
     @story = @project.stories.find(params[:story_id].to_i)
     @works = Work.where("project_id >= :project_id AND story_id <= :story_id", {:project_id => params[:project_id], :story_id => params[:story_id].to_i})
@@ -107,5 +101,10 @@ class ProjectsController < ApplicationController
   private
     def set_title
       @title = "Projects"
+    end
+    
+    def load_client_token
+      token = current_user.settings.where("name = 'PT_API_Token'").first
+      PivotalTracker::Client.token = token
     end
 end
