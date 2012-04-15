@@ -12,7 +12,7 @@
 <% @settings.each do |setting| %>
   <tr>
     <td><%= setting.name %></td>
-    <td><%= setting.APIkey %></td>
+    <td><%= setting.setting_value %></td>
     <td><%= link_to 'Show', setting %></td>
     <td><%= link_to 'Edit', edit_setting_path(setting) %></td>
     <td><%= link_to 'Destroy', setting, :confirm => 'Are you sure?', :method => :delete %></td>

@@ -131,7 +131,7 @@ class WorksController < ApplicationController
     
     def fill_ext_work
       if current_user.settings.where('settings.name' => 'Pivotal Tracker').first.enabled
-        PivotalTracker::Client.token = current_user.settings.where('settings.name' => 'Pivotal Tracker').first.APIkey
+        PivotalTracker::Client.token = current_user.settings.where('settings.name' => 'Pivotal Tracker').first.setting_value
         @project = PivotalTracker::Project.find(242503)
         #pivotal tracker
         @activity = @project.activities.all
