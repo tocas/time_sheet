@@ -62,7 +62,7 @@ class ApiController < ApplicationController
     b.add_namespace('http://www.w3.org/1999/xhtml')
 
     # The html itself
-    t = REXML::Text.new( "This is so <a href='localhost:3000'>Localhost</a>", false, nil, true, nil, %r/.^/ )
+    t = REXML::Text.new( "This is so <a href='htpp://www.seznam.cz'>Seznam</a>", false, nil, true, nil, %r/.^/ )
 
     # Add the html text to the body, and the body to the html element
     b.add(t)
