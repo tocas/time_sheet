@@ -24,6 +24,7 @@ class PtApiController < ApplicationController
     
     if @pt.save
       UserMailer.log_time(@user,@pt).deliver
+      
     end    
   end
   
@@ -31,5 +32,10 @@ class PtApiController < ApplicationController
     def parse_date(pt_date)
       day = pt_date.to_s.split(' ')[0]
       Date.strptime(day, '%Y/%m/%d')
+    end
+    
+    def send_xmpp
+      im = Jabber::Simple.new("secretarytimesheet@gmail.com", "7IAgfyDpWq67")
+      im.deliver(@user.email, "Ahoj kamarade")
     end
 end

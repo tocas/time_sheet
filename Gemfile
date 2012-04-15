@@ -13,6 +13,7 @@ gem 'pivotal-tracker'
 gem 'pdfkit'
 gem 'json'
 gem 'xmpp4r-simple', :git => "https://github.com/blaine/xmpp4r-simple.git"
+gem 'httpclient'
 
 # Use unicorn as the web server
 # gem 'unicorn'

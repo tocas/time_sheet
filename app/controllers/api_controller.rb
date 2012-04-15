@@ -38,6 +38,6 @@ class ApiController < ApplicationController
   
   def send_message
     im = Jabber::Simple.new("secretarytimesheet@gmail.com", "7IAgfyDpWq67")
-    im.deliver("tomaslucovic@gmail.com", "Ahoj kamarade")
+    im.deliver("tomaslucovic@gmail.com", "<a href='localhost:3000'>Localhost</a>")
   end
 end
