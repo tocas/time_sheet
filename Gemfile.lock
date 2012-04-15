@@ -188,4 +188,5 @@ DEPENDENCIES
   rspec-rails
   spork
   webrat
+  xmpp4r
   xmpp4r-simple!

@@ -37,7 +37,41 @@ class ApiController < ApplicationController
   end
   
   def send_message
-    im = Jabber::Simple.new("secretarytimesheet@gmail.com", "7IAgfyDpWq67")
-    im.deliver("tomaslucovic@gmail.com", "<a href='localhost:3000'>Localhost</a>")
+    #im = Jabber::Simple.new("secretarytimesheet@gmail.com", "7IAgfyDpWq67")
+    #im.deliver("tomaslucovic@gmail.com", "<a href='localhost:3000'>Localhost</a>")
+
+    # Login
+    jid = Jabber::JID::new('secretarytimesheet@gmail.com')
+    password = '7IAgfyDpWq67'
+    cl = Jabber::Client::new(jid)
+    cl.connect
+    cl.auth(password)
+
+    # Create a message
+    to = "tomaslucovic@gmail.com"
+    subject = "XMPP4R Rich-Text Test"
+    body = "Wow, I can do HTML now. But if you see this, your client doesn't support it"
+    m = Jabber::Message::new(to, body).set_type(:normal).set_id('1').set_subject(subject)
+
+    # Create the html part
+    h = REXML::Element::new("html")
+    h.add_namespace('http://jabber.org/protocol/xhtml-im')
+
+    # The body part with the correct namespace
+    b = REXML::Element::new("body")
+    b.add_namespace('http://www.w3.org/1999/xhtml')
+
+    # The html itself
+    t = REXML::Text.new( "This is so <strong><span style='background: #003EFF; '><span style='font-size: large; '>COOL!!!</span></span></strong>. I can really do <strong>HTML</strong> now.", false, nil, true, nil, %r/.^/ )
+
+    # Add the html text to the body, and the body to the html element
+    b.add(t)
+    h.add(b)
+
+    # Add the html element to the message
+    m.add_element(h)
+
+    # Send it
+    cl.send m
   end
 end
