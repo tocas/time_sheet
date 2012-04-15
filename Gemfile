@@ -12,6 +12,7 @@ gem 'hpricot'
 gem 'pivotal-tracker'
 gem 'pdfkit'
 gem 'json'
+gem 'xmpp4r-simple', :git => "https://github.com/blaine/xmpp4r-simple.git"
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -38,7 +39,7 @@ gem 'json'
 
 group :development do
   gem 'rspec-rails'
-  gem 'annotate-models', '1.0.4'
+  gem 'annotate', '2.4.0'
   gem 'gravatar_image_tag', '1.0.0.pre2'
 end
 
