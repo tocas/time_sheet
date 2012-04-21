@@ -2,11 +2,13 @@ class ProjectsController < ApplicationController
 
   before_filter :authenticate_user!
   before_filter :set_title
-  before_filter :load_client_token
   # GET /projects
   # GET /projects.xml
   def index
     #@projects = Project.all
+    PivotalTracker::Client.token = '7b9d3829a097cf4b770d4d13ab30e4f4'
+    logger.debug '7b9d3829a097cf4b770d4d13ab30e4f4'
+    logger.debug current_user.settings.first.setting_value
     @projects = PivotalTracker::Project.all
     respond_to do |format|
       format.html # index.html.erb
@@ -17,6 +19,8 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.xml
   def show    
+    PivotalTracker::Client.token = current_user.settings.first.setting_value
+    
     @project = PivotalTracker::Project.find(params[:id].to_i)
     @stories = @project.stories.all
 
@@ -101,10 +105,5 @@ class ProjectsController < ApplicationController
   private
     def set_title
       @title = "Projects"
-    end
-    
-    def load_client_token
-      token = current_user.settings.where("name = 'PT_API_Token'").first
-      PivotalTracker::Client.token = token
     end
 end
