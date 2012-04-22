@@ -4,25 +4,24 @@ class SettingsController < ApplicationController
   
   
   before_filter :authenticate_user!
-  before_filter :find_settings, :only => [:show, :edit, :update, :destroy]
+  before_filter :find_settings, :only => [:edit, :update]
   before_filter :set_title
   
   def index
-    @settings = current_user.settings
-
+    @setting = current_user.setting
+    if @setting.nil? 
+      redirect_to new_setting_path
+      return
+    end
+    
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @settings }
-    end
-  end
-
-  # GET /settings/1
-  # GET /settings/1.xml
-  def show
-    respond_to do |format|
-      format.html # show.html.erb
       format.xml  { render :xml => @setting }
     end
+  end
+  
+  def show
+    redirect_to settings_path
   end
 
   # GET /settings/new
@@ -38,13 +37,13 @@ class SettingsController < ApplicationController
 
   # GET /settings/1/edit
   def edit
-    @setting = Setting.find(params[:id])
+
   end
 
   # POST /settings
   # POST /settings.xml
   def create
-    @setting = current_user.settings.build(params[:setting])
+    @setting = current_user.build_setting(params[:setting])
 
     respond_to do |format|
       if @setting.save
@@ -70,22 +69,11 @@ class SettingsController < ApplicationController
       end
     end
   end
-
-  # DELETE /settings/1
-  # DELETE /settings/1.xml
-  def destroy
-    @setting.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(settings_url) }
-      format.xml  { head :ok }
-    end
-  end
   
   
   private
     def find_settings
-      @setting = current_user.settings.find(params[:id])
+      @setting = current_user.setting
     end
     
     def set_title

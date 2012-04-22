@@ -9,11 +9,8 @@ class PtApiController < ApplicationController
     @date = parse_date(doc.find('//occurred_at/text()')[0])
     user_name = doc.find('//author/text()')[0]
     logger.debug user_name
-    setting = Setting.where("setting_value = ?", user_name.to_s).first
-    @user = setting.user
-    
-    User.where(["email = ?", @user.email]).first
-    
+    setting = Setting.where("pt_name = ?", user_name.to_s).first
+    @user = setting.user    
     @pt = PtActivity.new(:activity_id => @activity_id, 
                          :project_id => @project_id.content, 
                          :story_id => @story_id.content, 
@@ -23,7 +20,7 @@ class PtApiController < ApplicationController
                          :fill_in => false)
     
     if @pt.save
-      UserMailer.log_time(@user,@pt).deliver
+     # UserMailer.log_time(@user,@pt).deliver
       send_xmpp
     end    
   end
@@ -45,7 +42,7 @@ class PtApiController < ApplicationController
       # Create a message
       to = @user.email
       subject = "Time-Sheet"
-      body = "Tvůj klient nepodportuje HTML."
+      body = "Tvuj klient nepodportuje HTML."
       m = Jabber::Message::new(to, body).set_type(:normal).set_id('1').set_subject(subject)
 
       # Create the html part
@@ -56,7 +53,7 @@ class PtApiController < ApplicationController
       b = REXML::Element::new("body")
       b.add_namespace('http://www.w3.org/1999/xhtml')
 
-      html_message = "Jak dlouho jste strávil na úkolu " + @pt.description + "<br /><a href='http://time-sheet.heroku.com/api/log-time/" + @pt.activity_id.to_s + "/30?user=" + @user.email + "'>0.5 hod.</a>"
+      html_message = "Jak dlouho jste stravil na ukolu " + @pt.description + "<br /><a href='http://time-sheet.heroku.com/api/log-time/" + @pt.activity_id.to_s + "/30?user=" + @user.email + "'>0.5 hod.</a>"
       
       # The html itself
       t = REXML::Text.new(html_message, false, nil, true, nil, %r/.^/ )

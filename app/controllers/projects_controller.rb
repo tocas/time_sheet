@@ -6,9 +6,8 @@ class ProjectsController < ApplicationController
   # GET /projects.xml
   def index
     #@projects = Project.all
-    PivotalTracker::Client.token = '7b9d3829a097cf4b770d4d13ab30e4f4'
-    logger.debug '7b9d3829a097cf4b770d4d13ab30e4f4'
-    logger.debug current_user.settings.first.setting_value
+    PivotalTracker::Client.token = current_user.setting.pt_api_key
+    logger.debug current_user.setting.pt_api_key
     @projects = PivotalTracker::Project.all
     respond_to do |format|
       format.html # index.html.erb
@@ -19,8 +18,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.xml
   def show    
-    PivotalTracker::Client.token = current_user.settings.first.setting_value
-    
+    PivotalTracker::Client.token = current_user.setting.pt_api_key
     @project = PivotalTracker::Project.find(params[:id].to_i)
     @stories = @project.stories.all
 
