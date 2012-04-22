@@ -67,5 +67,6 @@ class PtApiController < ApplicationController
       m.add_element(h)
 
       # Send it
+      cl.send m
     end
 end
