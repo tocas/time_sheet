@@ -1,9 +1,14 @@
-<header>
-  <div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container">
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <%= link_to "Time Sheet version 2.0.1", root_path, :class => 'brand'%>
+    	<div class="nav-collapse">
       	<ul class="nav">
-      	  <%= link_to "Time Sheet version 2.0.1", root_path, :class => 'brand'%>
       	  <%if @title.to_s == "Work" %>
             <li class = "active"><%= link_to "My Work", works_path%></li>
           <% else %>
@@ -20,12 +25,10 @@
             <li><%= link_to "Settings", settings_path%></li>
           <%end%>
     			<%= render 'devise/menu/admin' %>
-        </ul>
-        <ul class="nav pull-right">
           <%= render 'devise/menu/registration_items' %>
     			<%= render 'devise/menu/login_items' %>
         </ul>
       </div>
     </div>
   </div>
-</header>
+</div>
