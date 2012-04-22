@@ -20,7 +20,7 @@ class PtApiController < ApplicationController
                          :fill_in => false)
     
     if @pt.save
-     # UserMailer.log_time(@user,@pt).deliver
+      UserMailer.log_time(@user,@pt).deliver
       send_xmpp
     end    
   end
@@ -32,6 +32,7 @@ class PtApiController < ApplicationController
     end
     
     def send_xmpp
+      p "Sendig XMPP"
       # Login
       jid = Jabber::JID::new('secretarytimesheet@gmail.com')
       password = '7IAgfyDpWq67'
