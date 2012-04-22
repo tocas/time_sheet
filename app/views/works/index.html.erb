@@ -31,7 +31,7 @@
   <tr>
     <td></td>
     <td><%= work.description %></td>
-    <td><%= minutes_to_hours(work.time ? work.time : 0) %> h.</td>
+    <td><%= minutes_to_hours(work.time) %> h.</td>
   </tr>
   <% day_time += work.time ? work.time : 0 %>
 <% end %>
