@@ -10,9 +10,9 @@
       </div>
     </div>
     <div class="control-group">
-      <%= f.label :password, :class => 'control-label', :for => 'email_input'%>
+      <%= f.label :password, :class => 'control-label', :for => 'password_input'%>
       <div class="controls">
-        <%= f.password_field :password , :id => 'email_input', :class => 'input-xlarge' %>
+        <%= f.password_field :password , :id => 'password_input', :class => 'input-xlarge' %>
       </div>
     </div>
     <div class="control-group">
@@ -20,9 +20,10 @@
       <div class="controls">
         <%= f.password_field :password_confirmation , :id => 'password_confirmation', :class => 'input-xlarge' %>
       </div>
-      <div class="form-actions">
-        <%= f.submit "Sign up", :class => 'btn btn-primary'%>
-      </div>
+    </div>
+    <div class="form-actions">
+      <%= f.submit "Sign up", :class => 'btn btn-primary'%>
+    </div>
   </fieldset>
 <% end %>
 

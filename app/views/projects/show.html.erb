@@ -1,16 +1,14 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Project:</b>
-  <%= @project.id %>
-</p>
-
-<p>
-  <b>Name:</b>
-  <%= @project.name %>
-</p>
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+<div class="row-fluid">
+  <div class="span4">
+    <%= link_to projects_path, :class => "btn btn-primary" do %>   
+        <i class="icon-arrow-left icon-white"></i>
+        Back to Projects
+    <% end %>
+  </div>
+  <div class="span4">
+    <h1><%= @project.id %> - <%= @project.name %>
+  </div>
+</div>
 
 <%= render 'story_table' %>
 

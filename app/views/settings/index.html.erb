@@ -1,14 +1,7 @@
+<h1>Your settings</h1>
 <div class="row">
-  <div class="span8">&nbsp</div>
-  <div class="span4">
+  <div class="span4 offset8">
     <%= link_to 'Edit', edit_setting_path(@setting), :class => "btn btn-primary" %>
   </div>
 </div>
-<div class="row">
-  <div class="span6">Pivotal Tracker name</div>
-  <div class="span6"><%= @setting.pt_name %></div>
-</div>
-<div class="row">
-  <div class="span6">Pivotal Tracker API key</div>
-  <div class="span6"><%= @setting.pt_api_key %></div>
-</div>
+<%= render 'form_disabled' %>

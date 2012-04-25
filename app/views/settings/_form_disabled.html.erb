@@ -16,17 +16,14 @@
    <div class="control-group">
      <%= f.label :pt_name, :class => "control-label", :for =>"pt_name_input" %>
      <div class="controls">
-        <%= f.text_field :pt_name, :class => "input-xlarge", :id => "pt_name_input" %>
+        <%= f.text_field :pt_name, :disabled => true, :class => "input-xlarge disabled", :id => "pt_name_input" %>
      </div>
    </div>
   <div class="control-group">
     <%= f.label :pt_api_key, :class => "control-label", :for =>"pt_api_key_input" %>
     <div class="controls">
-       <%= f.text_field :pt_api_key, :class => "input-xlarge", :id => "pt_api_key_input" %>
+       <%= f.text_field :pt_api_key, :disabled => true, :class => "input-xlarge disabled", :id => "pt_api_key_input" %>
     </div>
-  </div>
-  <div class="form-actions">
-    <%= f.submit :class => 'btn btn-primary'%>
   </div>
   </fieldset>
 <% end %>
