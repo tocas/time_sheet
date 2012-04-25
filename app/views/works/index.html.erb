@@ -1,43 +1,31 @@
-<h1>Work list</h1>
 
-<style>
- table { table-layout: fixed; }
- table th, table td { overflow: hidden; }
-</style>
+<%= link_to 'New Work', new_work_path %>
+
+<h1>Work list</h1>
 
 <table class="table table-striped">
   <tr>
-    <th style="width: 10%">Day</th>
-    <th style="width: 80%">Description</th>
-    <th style="width: 10%">Time</th>
-  </tr>
-  <% day = Date.today + 1 %>
-  <% day_time = 0%>
-<% @works.each do |work| %>
-  <% if (day != work.day)%>
-    <% if (day != Date.today + 1)%>
+    <td>Day</td>
+    <td>Activity</td>
+    <td>Time</td>
+  </th>
+  <% @works.each do |day, day_works| %>   
     <tr>
-      <td>Summary: </td>
+      <td><%= day %></td>
       <td></td>
-      <td><%= minutes_to_hours(day_time) %> h.</td>
+      <td></td>
     </tr>
+    <% day_works.each do |work|%>
+    <tr>
+      <td></td>
+      <td><%= link_to work.story_id, project_story_path(work.project_id, work.story_id) %> / <%= work.description %></td>
+      <td><%= format_time(work.time) %></td>
+    </tr>
     <% end %>
     <tr>
-      <td colspan = 3><%= work.day.to_formatted_s(:long) %></td>
-    </tr>
-    <% day = work.day %>
-    <% day_time = 0 %>
-  <% end %>
-  <tr>
-    <td></td>
-    <td><%= work.description %></td>
-    <td><%= minutes_to_hours(work.time ? work.time : 0) %> h.</td>
-  </tr>
-  <% day_time += work.time ? work.time : 0 %>
-<% end %>
-<tr>
-  <td colspan = 3>Summary: <%= day_time %></td>
-</tr>
+      <td>Time summary:</td>
+      <td></td>
+      <td><%= format_time(day_works.sum(&:time)) %></td>
+    </tr>
+  <% end%>
 </table>
-
-<%= link_to 'New Work', new_work_path %>

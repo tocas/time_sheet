@@ -21,6 +21,7 @@ class WorksController < ApplicationController
     @days = (@day.beginning_of_month..@day.end_of_month ).to_a
     
     @works = current_user.works.order('day DESC')
+    @works = @works.group_by(&:day)
      
     respond_to do |format|
       format.html # index.html.erb
