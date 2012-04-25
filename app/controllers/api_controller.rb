@@ -1,3 +1,4 @@
+# encoding: utf-8
 class ApiController < ApplicationController
   def create
     post_data = request.body.read

@@ -1,3 +1,4 @@
+# encoding: utf-8
 class PtApiController < ApplicationController
   def index
     post_data = request.body.read

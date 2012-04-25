@@ -1,13 +1,10 @@
-
-<%= link_to 'New Work', new_work_path %>
-
 <h1>Work list</h1>
 
 <table class="table table-striped">
   <tr>
-    <td>Day</td>
-    <td>Activity</td>
-    <td>Time</td>
+    <th>Day</th>
+    <th>Story ID / Activity</th>
+    <th>Time</th>
   </th>
   <% @works.each do |day, day_works| %>   
     <tr>
@@ -23,9 +20,9 @@
     </tr>
     <% end %>
     <tr>
-      <td>Time summary:</td>
-      <td></td>
-      <td><%= format_time(day_works.sum(&:time)) %></td>
+      <th>Time summary:</th>
+      <th></th>
+      <th><%= format_time(day_works.sum(&:time)) %></th>
     </tr>
   <% end%>
 </table>
