@@ -9,7 +9,7 @@ describe Work do
       :time => 4,
       :user_id => 1 
     }
-    @work = Factory.build(:work)
+    Factory.build(:work)
     @work.save
   end
 

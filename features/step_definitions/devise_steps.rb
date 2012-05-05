@@ -18,3 +18,8 @@ Given /^I am a new, authenticated user$/ do
   And %{I fill in "user_password" with "#{password}"}
   And %{I press "Sign in"}
 end
+
+Given /^I am authenticated user$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
