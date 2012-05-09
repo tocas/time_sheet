@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: 
+  activity_id: "12345"
+  project_id: "2012"
+  story_id: "2013"
+  description: "Nastavení produkčního prostředí"
+  day: "2012-04-04"
+  user: tomaslucovic@gmail.com
+  fill_in: false
+
+# column: value
+#
+two: {}
+#  column: value
