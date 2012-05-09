@@ -1,5 +1,11 @@
 # Time Sheet
 
+## Requirements
+
+* Ruby 1.9.2 or higher
+* Bundler gem 1.0 or higher
+* MySQL database 1.8 or higher
+
 ## Quickstart
 
 1. Clone the latest and greatest version
@@ -19,7 +25,6 @@ $. Migrate your database
 5. Run the server or anything else
 
         rails s
-
 
 ## Author
 
