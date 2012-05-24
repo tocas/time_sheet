@@ -15,6 +15,8 @@ gem 'json'
 gem 'xmpp4r-simple', :git => "https://github.com/blaine/xmpp4r-simple.git"
 gem 'xmpp4r'
 gem 'httpclient'
+gem 'gravatar_image_tag', '1.0.0.pre2'
+
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -42,7 +44,6 @@ gem 'httpclient'
 group :development do
   gem 'rspec-rails'
   gem 'annotate', '2.4.0'
-  gem 'gravatar_image_tag', '1.0.0.pre2'
 end
 
 group :test do
