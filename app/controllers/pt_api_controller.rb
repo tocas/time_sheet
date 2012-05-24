@@ -55,7 +55,10 @@ class PtApiController < ApplicationController
       b = REXML::Element::new("body")
       b.add_namespace('http://www.w3.org/1999/xhtml')
 
-      html_message = "Jak dlouho jste stravil na ukolu " + @pt.description + "<br /><a href='http://time-sheet.heroku.com/api/log-time/" + @pt.activity_id.to_s + "/30?user=" + @user.email + "'>0.5 hod.</a>"
+      html_message = "Jak dlouho jste stravil na ukolu " + @pt.description + "<br />
+      <a href='http://time-sheet.heroku.com/api/log-time/" + @pt.activity_id.to_s + "/30?user=" + @user.email + "'>0.5 hod.</a><br />
+      <a href='http://time-sheet.heroku.com/api/log-time/" + @pt.activity_id.to_s + "/60?user=" + @user.email + "'>1 hod.</a>
+      <a href='http://time-sheet.heroku.com/api/log-custom-time/" + @pt.activity_id.to_s + "?user=" + @user.email + "'>Vlastní čas</a>"
       
       # The html itself
       t = REXML::Text.new(html_message, false, nil, true, nil, %r/.^/ )
