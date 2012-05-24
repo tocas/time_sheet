@@ -11,7 +11,7 @@ class UserMailer < ActionMailer::Base
     else
       @url30 = 'http://localhost:3000/api/log-time/' + @activity.activity_id.to_s + '/30?user=' + @user.email
       @url60 = 'http://localhost:3000/api/log-time/' + @activity.activity_id.to_s + '/60?user=' + @user.email
-      @custom = 'http://localhost:3000/api/log_custom_time/' + @activity.activity_id.to_s  + '?user=' + @user.email
+      @custom = 'http://localhost:3000/api/log-custom-time/' + @activity.activity_id.to_s  + '?user=' + @user.email
     end
     mail(:to => user.email, :subject => 'Vyplnte prosim vykaz')
   end
