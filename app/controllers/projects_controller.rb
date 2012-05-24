@@ -90,6 +90,7 @@ class ProjectsController < ApplicationController
   end
   
   def story
+    PivotalTracker::Client.token = current_user.setting.pt_api_key
     @project = PivotalTracker::Project.find(params[:project_id].to_i)
     @story = @project.stories.find(params[:story_id].to_i)
     @works = Work.where("project_id >= :project_id AND story_id <= :story_id", {:project_id => params[:project_id], :story_id => params[:story_id].to_i})
