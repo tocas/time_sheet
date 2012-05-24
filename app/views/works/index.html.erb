@@ -15,7 +15,13 @@
     <% day_works.each do |work|%>
     <tr>
       <td></td>
-      <td><%= link_to work.story_id, project_story_path(work.project_id, work.story_id) %> / <%= work.description %></td>
+      <td>
+      <% if work.project_id && work.story_id %>
+        <%= link_to work.story_id, project_story_path(work.project_id, work.story_id) %> / <%= work.description %>
+      <% else %>
+        <%= work.description %>
+      <% end %>
+      </td>
       <td><%= format_time(work.time) %></td>
     </tr>
     <% end %>

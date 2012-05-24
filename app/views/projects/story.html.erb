@@ -39,7 +39,7 @@
     </div>
   </div>
 </div>
-<%= link_to "Add to cart", {:controller => "work", :action => "new", :story_id => @story.id, :project_id => @project.id }%>
+<%= link_to "Add work", {:controller => "works", :action => "new", :story_id => @story.id, :project_id => @project.id }, html_options = {:class => "btn btn-success"} %>
 
 <h2>Activities</h2>
 

@@ -37,6 +37,13 @@ class ApiController < ApplicationController
     end
   end
   
+  def log_custom_time
+    @activity_id = params[:activity_id]
+    @activity = PtActivity.where("activity_id = ? AND fill_in = ?", @activity_id, false).first
+    @user = User.where(["email = ?", params[:user]]).first
+    redirect_to works_new_path(:project_id => @activity.project_id, :story_id => @activity.story_id, :description => @activity.description)
+  end
+  
   def send_message
     #im = Jabber::Simple.new("secretarytimesheet@gmail.com", "7IAgfyDpWq67")
     #im.deliver("tomaslucovic@gmail.com", "<a href='localhost:3000'>Localhost</a>")
