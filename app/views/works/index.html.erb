@@ -5,10 +5,12 @@
     <th>Day</th>
     <th>Story ID / Activity</th>
     <th>Time</th>
+    <th></th>
   </th>
   <% @works.each do |day, day_works| %>   
     <tr>
       <td><%= day %></td>
+      <td></td>
       <td></td>
       <td></td>
     </tr>
@@ -23,12 +25,14 @@
       <% end %>
       </td>
       <td><%= format_time(work.time) %></td>
+      <td><%= link_to "Edit", edit_work_path(work.id) %></td>
     </tr>
     <% end %>
     <tr>
       <th>Time summary:</th>
       <th></th>
       <th><%= format_time(day_works.sum(&:time)) %></th>
-    </tr>
+      <th></th>
+    </tr>
   <% end%>
 </table>

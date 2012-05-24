@@ -11,6 +11,16 @@
     </div>
   <% end %>
   
+  <% if @work.project_id && @work.story_id %>
+    <% project_id = @work.project_id %>
+    <% story_id = @work.story_id%>
+  <% else %>
+    <% project_id = params[:project_id] %>
+    <% story_id = params[:story_id] %>
+  <% end%>
+  
+  
+  
   <fieldset>
     <legend>New work</legend>
     <div class="control-group">
@@ -37,13 +47,13 @@
     <div class="control-group">
       <%= f.label :project_id, :class => "control-label", :for =>"project_id_input" %>
       <div class="controls">
-        <%= f.text_field :project_id, :id => "project_id_input", :value => params[:project_id] %>
+        <%= f.text_field :project_id, :id => "project_id_input", :value => project_id %>
       </div>
     </div>
     <div class="control-group">
       <%= f.label :story_id, :class => "control-label", :for =>"story_id_input" %>
       <div class="controls">
-        <%= f.text_field :story_id, :id => "story_id_input", :value => params[:story_id] %>
+        <%= f.text_field :story_id, :id => "story_id_input", :value => story_id %>
       </div>
     </div>
     <div class="form-actions">

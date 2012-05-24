@@ -69,6 +69,7 @@ class WorksController < ApplicationController
 
   # GET /works/1/edit
   def edit
+    p @work
   end
 
   # POST /works
