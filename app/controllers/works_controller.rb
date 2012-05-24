@@ -60,9 +60,6 @@ class WorksController < ApplicationController
       @attr = @attr.merge(:day => params["day"])
     end
     @work = Work.new(@attr)
-    
-    
-    fill_ext_work
 
     respond_to do |format|
       format.html # new.html.erb
