@@ -41,6 +41,7 @@ class ApiController < ApplicationController
     @activity_id = params[:activity_id]
     @activity = PtActivity.where("activity_id = ? AND fill_in = ?", @activity_id, false).first
     @user = User.where(["email = ?", params[:user]]).first
+    @activity.fill_in = true
     redirect_to new_work_path(:project_id => @activity.project_id, :story_id => @activity.story_id, :description => @activity.description)
   end
   

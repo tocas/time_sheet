@@ -39,7 +39,7 @@ class WorksController < ApplicationController
       format.pdf do
         pdf = PDF::Writer.new
         pdf.text "test"
-        send_data pdf.render, :filename => 'products.pdf', :type => 'application/pdf', :disposition => 'inline'
+        send_data pdf.render, :filename => 'works.pdf', :type => 'application/pdf', :disposition => 'inline'
       end
     end
   end
@@ -69,7 +69,6 @@ class WorksController < ApplicationController
 
   # GET /works/1/edit
   def edit
-    p @work
   end
 
   # POST /works
@@ -115,6 +114,10 @@ class WorksController < ApplicationController
   
   def all_work
     @works = Work.all
+  end
+  
+  def download
+  
   end
   
   private
