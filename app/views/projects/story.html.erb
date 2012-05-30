@@ -11,9 +11,6 @@
 <div>
   
 <div class="row-fluid">
-  <div class="span2">
-    &nbsp
-  </div>
   <div class="span10">
     <h1><%= @project.name %> / <%= @story.name %></h1>  
   </div>
@@ -24,7 +21,6 @@
 <div>
 
 <div class="row-fluid">
-  <div class="span2">&nbsp</div>
   <div class="span2">
       <%= @story.story_type %>
   </div>
@@ -48,17 +44,20 @@
     <th>Day</th>
     <th>Activity</th>
     <th>Time</th>
+    <th></th>
   </th>
   <% @works.each do |work| %>   
     <tr>
       <td><%= work.day %></td>
       <td><%= work.description.to_s %></td>
       <td><%= format_time(work.time) %></td>
+      <td><%= link_to "Edit", edit_work_path(work.id) %></td>
     </tr>
   <% end %>
   <tr>
     <th>Time summary:</th>
     <th></th>
     <th><%= format_time(@works.sum(:time)) %></th>
+    <th></th>
   </tr>
 </table>
