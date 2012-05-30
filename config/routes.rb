@@ -15,7 +15,8 @@ TimeSheet::Application.routes.draw do
   match '/projects/:project_id/story/:story_id', :to => "projects#story", :as => :project_story
   match '/pt-api', :to => "pt_api#index", :via => :post
   match '/api/log-time/:activity_id/:time', :to => "api#log_time"
-  match '/api/log-custom-time/:activity_id', :to => "api#log_custom_time"  
+  match '/api/log-custom-time/:activity_id', :to => "api#log_custom_time"
+  match '/projects/:project_id/overview', :to => "projects#overview", :as => :project_overview  
 
   
   resources :works

@@ -102,6 +102,31 @@ class ProjectsController < ApplicationController
     end
   end
   
+  def overview
+    PivotalTracker::Client.token = current_user.setting.pt_api_key
+    @project = PivotalTracker::Project.find(params[:project_id].to_i)
+    owner_email = @project.memberships.all.select{|x| x.role == "Owner"}.first.email
+    @h ={}
+    if current_user.email == owner_email
+      @users = User.all
+      @project.memberships.all.select{|x| x.role == "Owner"}
+      @users.each do |user|
+        works = Work.where(:project_id => params[:project_id], :user_id => user.id)
+        time = works.present? ? works.sum(:time) : 0
+        @h[user.email] = time
+      end
+    else 
+      @users = [User.find(current_user.id)]
+      works = Work.where(:project_id => params[:project_id], :user_id => current_user.id)
+      time = works.present? ? works.sum(:time) : 0
+      p time
+      @h[current_user.email] = time
+    end
+    
+    
+     
+  end
+  
   private
     def set_title
       @title = "Projects"
