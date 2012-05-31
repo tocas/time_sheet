@@ -1,0 +1,14 @@
+<h1>Users</h1>
+<table class="table table-striped">
+  <tr>
+    <th>User</th>
+    <th>Time</th>
+  </tr>
+  
+<% @users.each do |user| %>
+  <tr>
+    <td><%= user.email.to_s %></td>
+    <td><%= format_time(@h[user.email.to_s]) %></td>
+  </tr>
+<% end %>
+</table>
